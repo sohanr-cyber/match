@@ -7,17 +7,29 @@ import Header from "@/components/Header";
 import Steps from "@/components/Steps";
 import Footer from "@/components/Footer";
 import RegisterBanner from "@/components/RegisterBanner";
+import axios from "axios";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Navbar />
-      <Header />
+      <Header data={data} />
       <Steps />
       <RegisterBanner />
       <Footer />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const fetchData = async () => {
+    const { data } = await axios.get("https://bdapis.com/api/v1.1/divisions");
+    return data;
+  };
+  const data = await fetchData();
+  return {
+    props: { data },
+  };
 }

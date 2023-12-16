@@ -26,6 +26,10 @@ const Footer = () => {
             <div className={styles.link}>Plans</div>
             <div className={styles.link}>Our Software</div>
           </div>
+          <div className={styles.flex}>
+            <div className={styles.link}>Privacy Policy</div>
+            <div className={styles.link}>Terms & conditions</div>
+          </div>
         </div>
         <div className={styles.right}>
           <h2 className={styles.heading}>Contact Us</h2>

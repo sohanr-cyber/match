@@ -34,29 +34,37 @@
     border-radius: 5px;
     z-index: 2;
     color: black;
+    width: 100%;
 
 
 }
 
 .box form {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .box form label {
     font-weight: bold;
+    display: block;
 }
 
 .box form .field {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
+    min-width: 150px;
+    ;
 }
 
 .box form .field select {
     border-radius: 5px;
     padding: 5px 7px;
-    background-color: rgb(0, 0, 255, 0.1)
+    background-color: rgb(0, 0, 255, 0.1);
+
 }
 
 
@@ -94,5 +102,9 @@
     .wrapper .box form {
         flex-wrap: wrap;
         justify-content: space-between;
+    }
+
+    .box form .field {
+        min-width: 110px;
     }
 }
