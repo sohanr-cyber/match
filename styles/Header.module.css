@@ -1,0 +1,98 @@
+.wrapper {
+    padding: 50px 25px;
+    /* background: linear-gradient(145.7deg, #000000 7.61%, rgba(31, 27, 75, 0) 79.73%), linear-gradient(229.74deg, #1e1f13 9.39%, rgba(0, 0, 255, 0) 83.29%), linear-gradient(83.06deg, #0066ff 2.35%, #6b90e5 94.92%); */
+    min-height: 100vh;
+    position: relative;
+    /* background-color: rgb(0, 0, 255, 0.1); */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.wrapper .surface {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 255, 0.2);
+
+}
+
+.wrapper h1,
+.wrapper p {
+    z-index: 2;
+    text-transform: capitalize;
+}
+
+.box {
+    background-color: rgb(228, 238, 246, 0.5);
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 2;
+    color: black;
+
+
+}
+
+.box form {
+    display: flex;
+    gap: 10px;
+}
+
+.box form label {
+    font-weight: bold;
+}
+
+.box form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box form .field select {
+    border-radius: 5px;
+    padding: 5px 7px;
+    background-color: rgb(0, 0, 255, 0.1)
+}
+
+
+.box .search {
+    text-align: center;
+    background: var(--btn);
+    margin: 15px 0;
+    padding: 5px 7px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+@media (max-width: 570px) {
+    .wrapper {
+        padding: 30px 15px;
+        text-align: left;
+        align-items: flex-start;
+        width: 100%;
+        /* padding-top: 60px; */
+
+    }
+
+    .wrapper p {
+        display: none;
+    }
+
+
+    .wrapper .box {
+        width: 100%;
+    }
+
+    .wrapper .box form {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
