@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "../styles/Signin.module.css";
 import Logo from "@/components/utils/Logo";
-import { useRouter } from "next/router";
 
 const login = () => {
-  const router = useRouter();
   return (
     <div className={styles.wrapper}>
       <div className={styles.logo}>
