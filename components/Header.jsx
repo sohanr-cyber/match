@@ -7,28 +7,10 @@ const backgrounds = [
 ];
 
 import axios from "axios";
+import Box from "./utils/Box";
 
 const Header = ({ data }) => {
   const [backgroundIndex, setBackgroundIndex] = useState(0);
-  const [city, setCity] = useState(data.data[2].division);
-  const [districts, setDistricts] = useState([]);
-  const [currentDistrict, setCurrentDistrict] = useState();
-  const [subDistricts, setSubDistricts] = useState([]);
-  const fetch = async (city) => {
-    try {
-      const { data } = await axios.get(
-        `https://bdapis.com/api/v1.1/division/${city}`
-      );
-      setDistricts(data.data);
-      setCurrentDistrict(data.data[0].district);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetch(city);
-  }, [city]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,65 +32,7 @@ const Header = ({ data }) => {
         find a religious partner of your choice
       </h1>
       <p>we made it easy for you to get your life partner in your location </p>
-      <div className={styles.box}>
-        <form>
-          <div className={styles.field}>
-            {" "}
-            <label>I am Looking for</label>
-            <select default="Bride">
-              {["Bride", "Groom"].map((item, index) => (
-                <option key={index}>{item}</option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.field}>
-            {" "}
-            <label>Marital Status</label>
-            <select default="Unmarried">
-              {["Unmarried", "Married", "Divorced"].map((item, index) => (
-                <option key={index}>{item}</option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.field}>
-            <label>City </label>
-            <select onChange={(e) => setCity(e.target.value)}>
-              {[...data.data].map((item, index) => (
-                <option
-                  key={index}
-                  value={item.division}
-                  selected={item.division == city ? true : false}
-                >
-                  {item.division}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.field}>
-            <label>District</label>
-            <select onChange={(e) => setCurrentDistrict(e.target.value)}>
-              {[...districts].map((item, index) => (
-                <option key={index} value={item.district}>
-                  {item.district}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className={styles.field}>
-            {" "}
-            <label>Upazilla</label>
-            <select default="Dhaka">
-              {districts
-                ?.find((item) => item.district == currentDistrict)?
-                .upazilla.map((item, index) => (
-                  <option key={index}>{item}</option>
-                ))}
-            </select>
-          </div>
-        </form>
-        <div className={styles.search}>Search</div>
-      </div>
+      <Box data={data} />
     </div>
   );
 };

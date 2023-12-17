@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "../styles/Signin.module.css";
 import Logo from "@/components/utils/Logo";
-
-const login = () => {
+import { useRouter } from "next/router";
+const Login = () => {
+  const router = useRouter();
   return (
     <div className={styles.wrapper}>
       <div className={styles.logo}>
@@ -32,4 +33,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
