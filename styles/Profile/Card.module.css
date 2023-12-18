@@ -2,8 +2,12 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     max-width: 250px;
+    /* min-width: 200px; */
     padding: 10px;
-    background-color: rgba(251, 0, 255, 0.1);
+    /* background: linear-gradient(rgba(55, 0, 60), rgba(255, 0, 242)); */
+    background: linear-gradient(skyblue, rgb(0, 0, 0));
+    color: white;
+
 }
 
 .container .flex {
@@ -16,4 +20,49 @@
 
 .container .flex .key {
     font-weight: bold;
+}
+
+.container .flex .key,
+.container .flex .key {
+    flex: 1
+}
+
+
+
+.pic {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: aliceblue;
+    /* border-radius: 50%; */
+    overflow: hidden;
+    margin: auto;
+
+}
+
+@media (max-width:570px) {
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
+        max-width: none;
+    }
+
+
+
+
+    .container .top {
+        flex: 1
+    }
+
+    .container .bottom {
+        flex: 2
+    }
+
+    .container .pic {
+        height: 100%;
+    }
+
+
 }

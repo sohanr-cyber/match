@@ -17,31 +17,32 @@ const Introduction = () => {
           <div className={styles.top}>320n23u23</div>
           <div className={styles.flex}>
             <div className={styles.key}>Name</div>
-            <div className={styles.value}>private</div>
+            <div className={styles.value}>Md Sohanur Rahman (Sohan)</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Age</div>
-            <div className={styles.value}>18</div>
+            <div className={styles.value}>23</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>height</div>
-            <div className={styles.value}>5</div>
+            <div className={styles.value}>5'10"</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Color</div>
             <div className={styles.value}>Brown</div>
           </div>
           <div className={styles.flex}>
-            <div className={styles.key}>Education</div>
-            <div className={styles.value}>SSC</div>
+            <div className={styles.key}>Type Of Education:</div>
+            <div className={styles.value}>General</div>
           </div>
+
           <div className={styles.flex}>
             <div className={styles.key}>Ocupation</div>
-            <div className={styles.value}>SSC</div>
+            <div className={styles.value}>Student</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Location</div>
-            <div className={styles.value}>SSC</div>
+            <div className={styles.value}>Rangpur</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Piety</div>

@@ -11,27 +11,34 @@ const Expectation = () => {
       <div className={styles.details}>
         <div className={styles.flex}>
           <div className={styles.key}>Min Age : </div>
-          <div className={styles.value}>- </div>
+          <div className={styles.value}>18 </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Max Age : </div>
-          <div className={styles.value}>- </div>
+          <div className={styles.value}>26</div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Min Height : </div>
-          <div className={styles.value}>Male </div>
+          <div className={styles.value}>5'3" </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Max Height: </div>
+          <div className={styles.value}> 5'6" </div>
+        </div>
+        <div className={styles.flex}>
+          <div className={styles.key}>city: </div>
           <div className={styles.value}> any </div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.key}>city : </div>
-          <div className={styles.value}> any </div>
-        </div>
-        <div className={styles.flex}>
-          <div className={styles.key}>complexion : </div>
-          <div className={styles.value}> any </div>
+          <div className={styles.key}>complexion: </div>
+          <div className={styles.value}>
+            {" "}
+            {["white", "brown"].map((i, index) => (
+              <span key={index} style={{ margin: "0 10px 0 0 " }}>
+                {i}
+              </span>
+            ))}{" "}
+          </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}> Education: </div>

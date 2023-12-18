@@ -10,20 +10,22 @@ const Family = () => {
       </div>
       <div className={styles.details}>
         <div className={styles.flex}>
-          <div className={styles.key}>Father Infomation : </div>
-          <div className={styles.value}> - </div>
+          <div className={styles.key}>Father Infomation: </div>
+          <div className={styles.value}> Doing Business </div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.key}>Mother Information : </div>
-          <div className={styles.value}> - </div>
+          <div className={styles.key}>Mother Information: </div>
+          <div className={styles.value}> Housewife </div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.key}>Sibling Information : </div>
-          <div className={styles.value}> </div>
+          <div className={styles.key}>Sibling Information: </div>
+          <div className={styles.value}>
+            3 Brother 0 Sister , Brothers are marreid and doing Job .
+          </div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.key}>How Islamic The Family is : </div>
-          <div className={styles.value}>Good </div>
+          <div className={styles.key}>Family Status : </div>
+          <div className={styles.value}>Middle Class </div>
         </div>
       </div>
     </div>

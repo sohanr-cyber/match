@@ -3,12 +3,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(253, 253, 253, 0.6);
+    background-color: white;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 3;
+    /* background: linear-gradient(90deg, rgb(0, 52, 20), green); */
 }
 
 .wrapper .items {

@@ -13,3 +13,13 @@
     justify-content: center;
 
 }
+
+@media (max-width:570px) {
+    .profile__cards {
+        width: 100%;
+        padding: 70px 15px;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+}

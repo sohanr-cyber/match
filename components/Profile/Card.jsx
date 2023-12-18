@@ -3,7 +3,9 @@ import styles from "../../styles/Profile/Card.module.css";
 const Card = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.top}></div>
+      <div className={styles.top}>
+        <div className={styles.pic}></div>
+      </div>
       <div className={styles.bottom}>
         <div className={styles.flex}>
           <div className={styles.key}>Age :</div>
@@ -18,17 +20,17 @@ const Card = () => {
           <div className={styles.value}>White </div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.key}>City :</div>
-          <div className={styles.value}>Dhaka</div>
+          <div className={styles.key}>Body :</div>
+          <div className={styles.value}>Slim</div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Ocupation :</div>
           <div className={styles.value}>Student</div>
         </div>
-        <div className={styles.details}>
+        {/* <div className={styles.details}>
           The candidate is born and brought up in Dhaka, Bangladesh. She has
           studied in English medium ...
-        </div>
+        </div> */}
       </div>
     </div>
   );

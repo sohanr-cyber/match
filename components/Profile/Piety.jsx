@@ -20,18 +20,29 @@ const Piety = () => {
           <div className={styles.value}>0 </div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.key}>Outfit : </div>
-          <div className={styles.value}> </div>
+          <div className={styles.key}>Outfit:</div>
+          <div className={styles.value}>
+            {" "}
+            Borkha , Niqab , covering face , hand , feet{" "}
+          </div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.key}>How is your Recitation Of Quran : </div>
+          <div className={styles.key}>How is your Recitation Of Quran: </div>
           <div className={styles.value}> </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>
             write some islamic book you have finished :{" "}
           </div>
-          <div className={styles.value}>2000-02-23 </div>
+          <div className={styles.value}>
+            The Quran and Moon , Gog and Magoog , Tazkiya , Rahitul Makhtum{" "}
+          </div>
+        </div>
+        <div className={styles.flex}>
+          <div className={styles.key}>Every Day Deeds: </div>
+          <div className={styles.value}>
+            Reciting Quran , Study Hadidth , Hearing Islamic Lecture
+          </div>
         </div>
       </div>
     </div>

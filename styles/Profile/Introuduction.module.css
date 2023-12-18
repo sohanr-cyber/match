@@ -34,6 +34,17 @@
     font-weight: bold;
 }
 
+
+.right .value {
+    /* color:rgb(39, 39, 39)y; */
+}
+
+.right .flex {
+    /* margin: 10px 0; */
+    /* border-top: 1px solid blue; */
+    padding: 5px 0;
+}
+
 @media (max-width: 570px) {
 
     .wrapper {
