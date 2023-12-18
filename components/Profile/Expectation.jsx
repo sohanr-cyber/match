@@ -19,11 +19,11 @@ const Expectation = () => {
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Min Height : </div>
-          <div className={styles.value}>5'3" </div>
+          <div className={styles.value}>- </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Max Height: </div>
-          <div className={styles.value}> 5'6" </div>
+          <div className={styles.value}> - </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>city: </div>

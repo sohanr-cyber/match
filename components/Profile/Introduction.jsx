@@ -25,7 +25,7 @@ const Introduction = () => {
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>height</div>
-            <div className={styles.value}>5'10"</div>
+            <div className={styles.value}>-</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Color</div>
