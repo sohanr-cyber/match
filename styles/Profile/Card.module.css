@@ -1,0 +1,19 @@
+.container {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    max-width: 250px;
+    padding: 10px;
+    background-color: rgba(251, 0, 255, 0.1);
+}
+
+.container .flex {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    text-align: left;
+    ;
+}
+
+.container .flex .key {
+    font-weight: bold;
+}

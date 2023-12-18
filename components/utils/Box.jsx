@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import styles from "../../styles/Header.module.css";
 import axios from "axios";
-
+import { useRouter } from "next/router";
 const Box = ({ data }) => {
   const [city, setCity] = useState("All");
   const [districts, setDistricts] = useState([]);
   const [currentDistrict, setCurrentDistrict] = useState();
   const [upazillas, setUpazzilas] = useState([]);
   const [currentUpazilla, setCurrentUpazilla] = useState("All");
+  const router = useRouter();
 
   const fetch = async (city) => {
     try {
@@ -119,7 +120,9 @@ const Box = ({ data }) => {
           </select>
         </div>
       </form>
-      <div className={styles.search}>Search</div>
+      <div className={styles.search} onClick={() => router.push("/profile")}>
+        Search
+      </div>
     </div>
   );
 };

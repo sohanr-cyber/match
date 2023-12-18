@@ -8,6 +8,7 @@ import Steps from "@/components/Steps";
 import Footer from "@/components/Footer";
 import RegisterBanner from "@/components/RegisterBanner";
 import axios from "axios";
+import Search from "@/components/Search";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function Home({ data }) {
       <Steps />
       <RegisterBanner />
       <Footer />
+      {/* <Search /> */}
     </>
   );
 }
