@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import styles from "../../Styles/Profile/Similar.module.css";
+import styles from "../../styles/Profile/Similar.module.css";
 
 const Similar = () => {
   return (
