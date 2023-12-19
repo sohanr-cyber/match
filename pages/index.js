@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import RegisterBanner from "@/components/RegisterBanner";
 import axios from "axios";
 import Search from "@/components/Search";
-
+import BASE_URL from "@/config";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ data }) {

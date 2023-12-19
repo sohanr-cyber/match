@@ -29,7 +29,7 @@ const Profile = ({ data }) => {
 export async function getServerSideProps(context) {
   const { city, district, upazilla, gender, maritalStatus } = context.query;
 
-  const url = `http://localhost:3000/api/auth/user-filter?gender=${gender}&maritalStatus=${maritalStatus}&city=${city}&district=${district}&upazilla=${upazilla}`;
+  const url = `${BASE_URL}/api/auth/user-filter?gender=${gender}&maritalStatus=${maritalStatus}&city=${city}&district=${district}&upazilla=${upazilla}`;
 
   try {
     const { data } = await axios.get(url);
