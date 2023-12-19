@@ -73,12 +73,11 @@ handler.get(async (req, res) => {
       .skip(skip)
       .limit(parseInt(limit))
       .exec();
-    res.status(200).json({ users, totalPages, totalUsers });
-
-    res.status(200).json({ users });
-    res.status(500).json({ error: "Internal Server Error" });
+    return res.status(200).json({ users, totalPages, totalUsers });
   } catch (error) {
-    res.status(400);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+
 export default handler;
