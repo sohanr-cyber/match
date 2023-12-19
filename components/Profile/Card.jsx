@@ -26,7 +26,7 @@ const Card = ({ user, index }) => {
             // )}`,
           }}
         >
-          {user.gender == "Male" ? (
+          {user?.gender == "Male" ? (
             <div style={{ color: "green" }}>M</div>
           ) : (
             <div style={{ color: "purple" }}>F</div>
@@ -36,7 +36,7 @@ const Card = ({ user, index }) => {
       <div className={styles.bottom}>
         <div className={styles.flex}>
           <div className={styles.key}>Age:</div>
-          <div className={styles.value}>{calculateAge(user.bornAt)}</div>
+          <div className={styles.value}>{calculateAge(user?.bornAt)}</div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Height:</div>
@@ -44,15 +44,15 @@ const Card = ({ user, index }) => {
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Color:</div>
-          <div className={styles.value}>{user.skinColor} </div>
+          <div className={styles.value}>{user?.skinColor} </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Body:</div>
-          <div className={styles.value}>{user.bodyType}</div>
+          <div className={styles.value}>{user?.bodyType}</div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Ocupation:</div>
-          <div className={styles.value}>{user.profession}</div>
+          <div className={styles.value}>{user?.profession}</div>
         </div>
         {/* <div className={styles.details}>
           The candidate is born and brought up in Dhaka, Bangladesh. She has
