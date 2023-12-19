@@ -15,24 +15,23 @@ const Login = () => {
         </div>
         <div className={styles.form__container}>
           <div className={styles.flex}>
-            <div
-              className={styles.left}
-              style={{ borderBottom: "2px solid blue" }}
-            >
+            <div className={styles.left} onClick={() => router.push("/login")}>
               Login
             </div>{" "}
             <div
               className={styles.right}
+              style={{ borderBottom: "2px solid blue" }}
               onClick={() => router.push("/register")}
             >
               Signup
             </div>
           </div>
           <form>
+            <input type="text" placeholder="Enter Your  Name" />
             <input type="email" placeholder="Enter Your Email" />
             <input type="password" placeholder="Enter Your Password" />
           </form>
-          <div className={styles.btn}>Signup</div>
+          <div className={styles.btn}>Login</div>
         </div>
       </div>
       <Footer />

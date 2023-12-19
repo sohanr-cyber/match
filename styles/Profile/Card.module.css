@@ -1,13 +1,12 @@
 .container {
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
     border-radius: 5px;
-    max-width: 250px;
-    /* min-width: 200px; */
+    max-width: 200px;
+    min-width: 200px;
     padding: 10px;
     /* background: linear-gradient(rgba(55, 0, 60), rgba(255, 0, 242)); */
-    background: linear-gradient(skyblue, rgb(0, 0, 0));
-    color: white;
-
+    /* background: linear-gradient(skyblue, rgb(0, 0, 0)); */
+    color: rgb(0, 0, 0, 0.8)
 }
 
 .container .flex {
@@ -15,7 +14,7 @@
     justify-content: flex-start;
     gap: 15px;
     text-align: left;
-    ;
+    margin: 10px 0;
 }
 
 .container .flex .key {
@@ -30,13 +29,16 @@
 
 
 .pic {
-    width: 100%;
+    width: 80%;
     aspect-ratio: 1/1;
     background-color: aliceblue;
-    /* border-radius: 50%; */
+    border-radius: 50%;
     overflow: hidden;
     margin: auto;
-
+    font-size: 500%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width:570px) {
@@ -62,6 +64,10 @@
 
     .container .pic {
         height: 100%;
+    }
+
+    .container .flex {
+        margin: 3px 0;
     }
 
 

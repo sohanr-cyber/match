@@ -8,6 +8,8 @@ const Box = ({ data }) => {
   const [currentDistrict, setCurrentDistrict] = useState();
   const [upazillas, setUpazzilas] = useState([]);
   const [currentUpazilla, setCurrentUpazilla] = useState("All");
+  const [gender, setGender] = useState("All");
+  const [maritalStatus, setMaritalStatus] = useState("All");
   const router = useRouter();
 
   const fetch = async (city) => {
@@ -29,6 +31,16 @@ const Box = ({ data }) => {
     }
   };
 
+  const search = () => {
+    try {
+      router.push(
+        `/profile?gender=${gender}&maritalStatus=${maritalStatus}&city=${city}&district=${currentDistrict}&upazilla=${currentUpazilla}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetch(city);
   }, [city]);
@@ -39,8 +51,8 @@ const Box = ({ data }) => {
         <div className={styles.field}>
           {" "}
           <label>I am Looking for</label>
-          <select default="Bride">
-            {["Bride", "Groom"].map((item, index) => (
+          <select default="All" onChange={(e) => setGender(e.target.value)}>
+            {["All", "Male", "Female"].map((item, index) => (
               <option key={index}>{item}</option>
             ))}
           </select>
@@ -48,10 +60,15 @@ const Box = ({ data }) => {
         <div className={styles.field}>
           {" "}
           <label>Marital Status</label>
-          <select default="Unmarried">
-            {["Unmarried", "Married", "Divorced"].map((item, index) => (
-              <option key={index}>{item}</option>
-            ))}
+          <select
+            default="Unmarried"
+            onChange={(e) => setMaritalStatus(e.target.value)}
+          >
+            {["All", "Never Married", "Married", "Divorced"].map(
+              (item, index) => (
+                <option key={index}>{item}</option>
+              )
+            )}
           </select>
         </div>
 
@@ -120,7 +137,7 @@ const Box = ({ data }) => {
           </select>
         </div>
       </form>
-      <div className={styles.search} onClick={() => router.push("/profile")}>
+      <div className={styles.search} onClick={() => search()}>
         Search
       </div>
     </div>
