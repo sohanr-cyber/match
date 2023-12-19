@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Card from "@/components/Profile/Card";
 import axios from "axios";
-
+import BASE_URL from "@/config";
 const Profile = ({ data }) => {
   return (
     <>
