@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 3;
+    z-index: 4;
     background: aliceblue;
     max-height: 100vh;
     /* min-width: 180px; */
@@ -16,6 +16,18 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 15px;
+    font-weight: bold;
+    /* background: var(--btn);
+    color: white; */
+}
+
+.top .close {
+    border: 1px solid red;
+    padding: 3px 7px;
+    border-radius: 50%;
+    color: white;
+    background-color: red;
+    cursor: pointer;
 }
 
 .heading {

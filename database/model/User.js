@@ -34,6 +34,10 @@ const userSchema = mongoose.Schema(
       type: String,
     },
 
+    height: {
+      feet: { type: Number },
+      inches: { type: Number },
+    },
     skinColor: {
       type: String,
     },

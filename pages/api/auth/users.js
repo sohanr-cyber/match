@@ -13,10 +13,11 @@ import {
   datesOfBirth,
   upazillas,
   skinColors,
+  heights,
   bodyTypes,
   sessions,
   educationTypes,
-  meritalStatuses,
+  maritalStatuses,
 } from "./data";
 
 const handler = nextConnect();
@@ -25,7 +26,7 @@ handler.post(async (req, res) => {
   try {
     await db.connect();
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 500; i++) {
       const dummyUser = {
         name: faker.random.arrayElement(names),
         email: faker.internet.email(),
@@ -42,10 +43,11 @@ handler.post(async (req, res) => {
         profession: faker.random.arrayElement(professions),
         bornAt: new Date(faker.random.arrayElement(datesOfBirth)),
         session: faker.random.arrayElement(sessions),
-        maritalStatus: faker.random.arrayElement(meritalStatuses),
+        maritalStatus: faker.random.arrayElement(maritalStatuses),
         approved: true,
         impression: faker.random.number({ min: 0, max: 5000 }),
         averageMonthlyIncome: faker.random.number({ min: 20000, max: 80000 }),
+        height: faker.random.arrayElement(heights),
       };
 
       console.log({ dummyUser });

@@ -2,6 +2,7 @@ import React, { useState, useEffect, use } from "react";
 import styles from "../../styles/Header.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { professions, maritalStatuses } from "@/pages/api/auth/data";
 const Box = ({ data }) => {
   const [city, setCity] = useState("All");
   const [districts, setDistricts] = useState([]);
@@ -34,7 +35,9 @@ const Box = ({ data }) => {
   const search = () => {
     try {
       router.push(
-        `/profile?gender=${gender}&maritalStatus=${maritalStatus}&city=${city}&district=${currentDistrict}&upazilla=${currentUpazilla}`
+        `/profile?gender=${gender}&maritalStatus=${maritalStatus}&city=${city}&district=${currentDistrict}&upazilla=${currentUpazilla}&professions=${professions.join(
+          ","
+        )}&maritalStatuses=${maritalStatuses.join(",")}`
       );
     } catch (error) {
       console.log(error);

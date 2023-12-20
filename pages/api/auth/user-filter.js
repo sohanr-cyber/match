@@ -15,6 +15,7 @@ import {
   skinColors,
   bodyTypes,
   sessions,
+  heights,
 } from "./data";
 
 const handler = nextConnect();
@@ -37,7 +38,13 @@ handler.get(async (req, res) => {
       bornAtTo,
       page = 1,
       limit = 10,
+      feetFrom,
+      inchesFrom,
+      feetTo,
+      inchesTo,
       // Add more filters as needed
+      professions,
+      maritalStatuses,
     } = req.query;
 
     const filters = {};
@@ -52,8 +59,9 @@ handler.get(async (req, res) => {
     if (educationType && educationType !== "All")
       filters.educationType = educationType;
     if (education && education !== "All") filters.education = education;
-    if (profession && profession !== "All") filters.profession = profession;
+    // if (profession && profession !== "All") filters.profession = profession;
     if (skinColor && skinColor !== "All") filters.skinColor = skinColor;
+
     if (bodyType && bodyType !== "All") filters.bodyType = bodyType;
     if (bornAtFrom && bornAtTo && bornAtFrom !== "All" && bornAtTo !== "All") {
       filters.bornAt = {
@@ -61,6 +69,25 @@ handler.get(async (req, res) => {
         $lte: new Date(bornAtTo),
       };
     }
+
+    console.log({ filters });
+
+    if (feetFrom && inchesFrom && feetTo && inchesTo) {
+      filters["height.feet"] = {
+        $gte: parseInt(feetFrom),
+        $lte: parseInt(feetTo),
+      };
+      filters["height.inches"] = {
+        $gte: parseInt(inchesFrom),
+        $lte: parseInt(inchesTo),
+      };
+    }
+    if (professions && professions !== "All")
+      filters.profession = { $in: professions.split(",") };
+
+    if (maritalStatuses && maritalStatuses !== "All")
+      filters.maritalStatus = { $in: maritalStatuses.split(",") };
+
     await db.connect();
 
     const skip = (page - 1) * limit;
@@ -68,16 +95,17 @@ handler.get(async (req, res) => {
     const totalPages = Math.ceil(totalUsers / limit);
 
     const users = await User.find(
-      Object.keys(filters).length > 0 ? filters : {}
+      // Object.keys(filters).length > 0 ? filters : {}
+      filters
     )
       .skip(skip)
       .limit(parseInt(limit))
       .exec();
     return res.status(200).json({ users, totalPages, totalUsers });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 export default handler;

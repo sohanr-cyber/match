@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "../styles/Search.module.css";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-const MeritalStatus = ["Never Married", "Married", "Divorced", "Widowed"];
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { professions, maritalStatuses } from "@/pages/api/auth/data";
 const EducationalStatus = [
   "BSC",
   "Dakhil",
@@ -96,12 +97,32 @@ const universityNames = [
   "World University of Bangladesh",
 ];
 
-const Search = () => {
+import { useRouter } from "next/router";
+const Search = ({ setOpenFilter }) => {
+  const router = useRouter();
+  const updateRoute = (data) => {
+    console.log(data);
+    const queryParams = { ...router.query, ...data };
+    router.push({
+      pathname: "/profile",
+      query: queryParams,
+    });
+  };
+
+  console.log(typeof router.query.professions);
+  console.log(router.query.professions.split(","));
+
+  const updateRouteList = () => {
+    const queryParams = { ...router.query };
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
         <dic>Filter Serach</dic>
-        <div className={styles.close}>X</div>
+        <div className={styles.close} onClick={() => setOpenFilter(false)}>
+          X
+        </div>
       </div>
 
       {/* Allow Chose Gender */}
@@ -112,15 +133,49 @@ const Search = () => {
       <div className={styles.options}>
         <div className={styles.flex}>
           <div className={styles.icon}>
-            <CheckBoxOutlineBlankIcon />
-          </div>
-          <div className={styles.value}>Female</div>
-        </div>
-        <div className={styles.flex}>
-          <div className={styles.icon}>
-            <CheckBoxOutlineBlankIcon />
+            {router.query.gender == "All" || router.query.gender == "Male" ? (
+              <CheckBoxIcon
+                onClick={() =>
+                  updateRoute({
+                    gender: `${
+                      router.query.gender == "All" ? "Female" : "Female"
+                    }`,
+                  })
+                }
+              />
+            ) : (
+              <CheckBoxOutlineBlankIcon
+                onClick={() =>
+                  updateRoute({
+                    gender: `${
+                      router.query.gender == "Female" ? "All" : "Male"
+                    }`,
+                  })
+                }
+              />
+            )}
           </div>
           <div className={styles.value}>Male</div>
+        </div>
+        <div className={styles.flex}>
+          {router.query.gender == "All" || router.query.gender == "Female" ? (
+            <CheckBoxIcon
+              onClick={() =>
+                updateRoute({
+                  gender: `${router.query.gender == "All" ? "Male" : "Male"}`,
+                })
+              }
+            />
+          ) : (
+            <CheckBoxOutlineBlankIcon
+              onClick={() =>
+                updateRoute({
+                  gender: `${router.query.gender == "Male" ? "All" : "Female"}`,
+                })
+              }
+            />
+          )}
+          <div className={styles.value}>Female</div>
         </div>
       </div>
 
@@ -172,14 +227,81 @@ const Search = () => {
 
       {/* Allow chose Merital Status */}
       <div className={styles.heading}>
-        <div className={styles.title}>Gender</div>
+        <div className={styles.title}>Marital Status</div>
         <div className={styles.togle}>-</div>
       </div>
       <div className={styles.options}>
-        {MeritalStatus.map((item, index) => (
+        {maritalStatuses?.map((item, index) => (
           <div className={styles.flex} key={index}>
             <div className={styles.icon}>
-              <CheckBoxOutlineBlankIcon />
+              {router.query.maritalStatuses
+                ?.split(",")
+                .find((each) => each == item) ? (
+                <CheckBoxIcon
+                  onClick={() =>
+                    updateRoute({
+                      maritalStatuses: router.query.maritalStatuses
+                        ?.split(",")
+                        .filter((i) => i != item)
+                        .join(","),
+                    })
+                  }
+                />
+              ) : (
+                <CheckBoxOutlineBlankIcon
+                  onClick={() =>
+                    updateRoute({
+                      maritalStatuses: [
+                        ...router.query.maritalStatuses?.split(","),
+                        item,
+                      ].join(","),
+                    })
+                  }
+                />
+              )}{" "}
+            </div>
+            <div className={styles.value}>{item}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Allow Chose Professional Status */}
+      <div className={styles.heading}>
+        <div className={styles.title}>Profession</div>
+        <div className={styles.togle}>-</div>
+      </div>
+      <div
+        className={styles.options}
+        style={{ maxHeight: "30vh", overflow: "scroll" }}
+      >
+        {professions.map((item, index) => (
+          <div className={styles.flex} key={index}>
+            <div className={styles.icon}>
+              {router.query.professions
+                ?.split(",")
+                .find((each) => each == item) ? (
+                <CheckBoxIcon
+                  onClick={() =>
+                    updateRoute({
+                      professions: router.query.professions
+                        ?.split(",")
+                        .filter((i) => i != item)
+                        .join(","),
+                    })
+                  }
+                />
+              ) : (
+                <CheckBoxOutlineBlankIcon
+                  onClick={() =>
+                    updateRoute({
+                      professions: [
+                        ...router.query.professions?.split(","),
+                        item,
+                      ].join(","),
+                    })
+                  }
+                />
+              )}
             </div>
             <div className={styles.value}>{item}</div>
           </div>

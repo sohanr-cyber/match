@@ -281,14 +281,22 @@ const bodyTypes = [
   "Curvy",
   "Muscular",
   "Heavyset",
-  // You can add more body types as needed
 ];
 
-const meritalStatuses = ["Never Married", "Divorced", "Married"];
+const heights = [
+  { feet: 5, inches: 8 },
+  { feet: 5, inches: 4 },
+  { feet: 5, inches: 5 },
+  { feet: 6, inches: 6 },
+  { feet: 5, inches: 8 },
+];
+
+const maritalStatuses = ["Never Married", "Divorced", "Married"];
+
 export {
   institutes,
   districts,
-  meritalStatuses,
+  maritalStatuses,
   cities,
   names,
   professions,
@@ -300,4 +308,5 @@ export {
   bodyTypes,
   sessions,
   educationTypes,
+  heights,
 };

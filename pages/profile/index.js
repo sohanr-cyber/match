@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Profile/Index.module.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Card from "@/components/Profile/Card";
 import axios from "axios";
 import BASE_URL from "@/config";
+import Search from "@/components/Search";
 const Profile = ({ data }) => {
+  const [openfilter, setOpenFilter] = useState(true);
   return (
     <>
+      {openfilter && <Search setOpenFilter={setOpenFilter} />}
       <Navbar />
       <div className={styles.wrapper}>
         <div className={styles.flex}>
           <div className={styles.total}>Total Results : {data.totalUsers}</div>
-          <div className={styles.filter}>Filter</div>
+          <div
+            className={styles.filter}
+            onClick={() => {
+              setOpenFilter(true);
+            }}
+          >
+            Filter
+          </div>
         </div>
         <div className={styles.profile__cards}>
           {data.users.map((user, index) => (
@@ -26,9 +36,10 @@ const Profile = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  const { city, district, upazilla, gender, maritalStatus } = context.query;
+  const { city, district, upazilla, gender, professions, maritalStatuses } =
+    context.query;
 
-  const url = `${BASE_URL}/api/auth/user-filter?gender=${gender}&maritalStatus=${maritalStatus}&city=${city}&district=${district}&upazilla=${upazilla}`;
+  const url = `${BASE_URL}/api/auth/user-filter?gender=${gender}&maritalStatuses=${maritalStatuses}&city=${city}&district=${district}&upazilla=${upazilla}&professions=${professions}`;
 
   try {
     const { data } = await axios.get(url);
