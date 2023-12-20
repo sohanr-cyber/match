@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "../../styles/Profile/Introuduction.module.css";
 import Image from "next/image";
-const Introduction = () => {
+import { calculateAge } from "@/utils";
+import { educationTypes } from "@/pages/api/auth/data";
+const Introduction = ({ data }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
@@ -14,14 +16,14 @@ const Introduction = () => {
           />
         </div>
         <div className={styles.right}>
-          <div className={styles.top}>320n23u23</div>
+          <div className={styles.top}>{data._id}</div>
           <div className={styles.flex}>
             <div className={styles.key}>Name</div>
-            <div className={styles.value}>Md Sohanur Rahman (Sohan)</div>
+            <div className={styles.value}>{data.name}</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Age</div>
-            <div className={styles.value}>23</div>
+            <div className={styles.value}>{calculateAge(data.bornAt)}</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>height</div>
@@ -29,20 +31,26 @@ const Introduction = () => {
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Color</div>
-            <div className={styles.value}>Brown</div>
+            <div className={styles.value}>{data.skinColor} </div>
+          </div>
+          <div className={styles.flex}>
+            <div className={styles.key}>BodyType</div>
+            <div className={styles.value}>{data.bodyType} </div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Type Of Education:</div>
-            <div className={styles.value}>General</div>
+            <div className={styles.value}>{data.educationTypes || "--"}</div>
           </div>
 
           <div className={styles.flex}>
             <div className={styles.key}>Ocupation</div>
-            <div className={styles.value}>Student</div>
+            <div className={styles.value}>{data.profession || "--"}</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Location</div>
-            <div className={styles.value}>Rangpur</div>
+            <div className={styles.value}>
+              {data.city} || {data.district} || {data.upazilla}
+            </div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Piety</div>

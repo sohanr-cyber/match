@@ -11,15 +11,16 @@ import Address from "@/components/Profile/Address";
 import Expectation from "@/components/Profile/Expectation";
 import Piety from "@/components/Profile/Piety";
 import Similar from "@/components/Profile/Similar";
+import axios from "axios";
+import BASE_URL from "@/config";
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ data }) => {
   return (
     <>
       <Navbar />
       <div className={styles.wrapper} style={{ minHeight: "100vh" }}>
         <div className={styles.left}>
-          {" "}
-          <Introduction />
+          <Introduction data={data} />
           <Personal />
           <Physical />
           <Education />
@@ -28,9 +29,7 @@ const ProfileDetails = () => {
           <Family />
           <Expectation />
         </div>
-        <div className={styles.right}>
-          <Similar />
-        </div>
+        <div className={styles.right}>{/* <Similar /> */}</div>
       </div>
       <Footer />
     </>
@@ -38,3 +37,24 @@ const ProfileDetails = () => {
 };
 
 export default ProfileDetails;
+
+export async function getServerSideProps({ query }) {
+  const { id } = query;
+  console.log({ id });
+
+  const fetch = async () => {
+    try {
+      const { data } = await axios.get(`${BASE_URL}/api/auth/${id}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const data = await fetch();
+  return {
+    props: {
+      data: data, // Pass null or handle error scenario
+    },
+  };
+}

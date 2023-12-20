@@ -10,7 +10,6 @@ const Profile = ({ data }) => {
     <>
       <Navbar />
       <div className={styles.wrapper}>
-        {" "}
         <div className={styles.flex}>
           <div className={styles.total}>Total Results : {data.totalUsers}</div>
           <div className={styles.filter}>Filter</div>

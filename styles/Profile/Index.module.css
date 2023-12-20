@@ -12,6 +12,18 @@
     background: var(--btn);
     padding: 10px;
     color: white;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+.wrapper .filter {
+    border: 2px solid white;
+    padding: 3px 7px;
+    border-radius: 5px;
+    background-color: rgb(0, 136, 255, 0.1);
+    color: white;
+    cursor: pointer;
 }
 
 .profile__cards {
