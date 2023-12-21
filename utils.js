@@ -1,3 +1,12 @@
+function ageToDateOfBirth(age) {
+  var currentDate = new Date();
+  var currentYear = currentDate.getFullYear();
+  var birthYear = currentYear - age;
+
+  var dateOfBirth = new Date(birthYear, 0, 1);
+  return dateOfBirth.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+}
+
 function calculateAge(dateOfBirth) {
   // Parse the date of birth
   const dob = new Date(dateOfBirth);
@@ -20,6 +29,8 @@ function calculateAge(dateOfBirth) {
 
   return age;
 }
+
+
 const transparency = 0.2;
 const colorsWithTransparency = [
   `rgba(255, 0, 0, ${transparency})`, // Red with 10% opacity

@@ -45,6 +45,7 @@ handler.get(async (req, res) => {
       // Add more filters as needed
       professions,
       maritalStatuses,
+      educationTypes,
     } = req.query;
 
     const filters = {};
@@ -63,12 +64,12 @@ handler.get(async (req, res) => {
     if (skinColor && skinColor !== "All") filters.skinColor = skinColor;
 
     if (bodyType && bodyType !== "All") filters.bodyType = bodyType;
-    if (bornAtFrom && bornAtTo && bornAtFrom !== "All" && bornAtTo !== "All") {
-      filters.bornAt = {
-        $gte: new Date(bornAtFrom),
-        $lte: new Date(bornAtTo),
-      };
-    }
+    // if (bornAtFrom && bornAtTo && bornAtFrom !== "All" && bornAtTo !== "All") {
+    //   filters.bornAt = {
+    //     $gte: new Date(bornAtFrom),
+    //     $lte: new Date(bornAtTo),
+    //   };
+    // }
 
     console.log({ filters });
 
@@ -87,6 +88,9 @@ handler.get(async (req, res) => {
 
     if (maritalStatuses && maritalStatuses !== "All")
       filters.maritalStatus = { $in: maritalStatuses.split(",") };
+
+    if (educationTypes && educationTypes !== "All")
+      filters.educationType = { $in: educationTypes.split(",") };
 
     await db.connect();
 

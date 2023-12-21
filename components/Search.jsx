@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/Search.module.css";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import { professions, maritalStatuses } from "@/pages/api/auth/data";
+import {
+  professions,
+  maritalStatuses,
+  educationTypes,
+} from "@/pages/api/auth/data";
 const EducationalStatus = [
   "BSC",
   "Dakhil",
@@ -100,6 +104,19 @@ const universityNames = [
 import { useRouter } from "next/router";
 const Search = ({ setOpenFilter }) => {
   const router = useRouter();
+
+  const [age, setAge] = useState({
+    min: router.query.minAge || 15,
+    max: router.query.maxAge || 50,
+  });
+
+  const [height, setHeight] = useState({
+    feetFrom: router.query.feetFrom || 4,
+    feetTo: router.query.feetTo || 6,
+    inchesFrom: router.inchesFrom || 5,
+    inchesTo: router.query.inchesTo || 12,
+  });
+
   const updateRoute = (data) => {
     console.log(data);
     const queryParams = { ...router.query, ...data };
@@ -107,13 +124,6 @@ const Search = ({ setOpenFilter }) => {
       pathname: "/profile",
       query: queryParams,
     });
-  };
-
-  console.log(typeof router.query.professions);
-  console.log(router.query.professions.split(","));
-
-  const updateRouteList = () => {
-    const queryParams = { ...router.query };
   };
 
   return (
@@ -189,16 +199,44 @@ const Search = ({ setOpenFilter }) => {
           className={styles.flex}
           style={{
             justifyContent: "space-between",
-            gap: "20px",
+            gap: "10px",
+            alignItems: "center",
           }}
         >
-          <label>Minimum </label> <input type="number" />
+          <label>Minimum </label>{" "}
+          <input
+            type="number"
+            value={age.min}
+            onChange={(e) => setAge({ ...age, min: e.target.value })}
+          />{" "}
+          year
         </div>
         <div
           className={styles.flex}
-          style={{ justifyContent: "space-between" }}
+          style={{
+            justifyContent: "space-between",
+            gap: "10px",
+            alignItems: "center",
+          }}
         >
-          <label>Maximum</label> <input type="number" />
+          <label>Maximum</label>
+          <input
+            type="number"
+            value={age.max}
+            onChange={(e) => setAge({ ...age, max: e.target.value })}
+          />{" "}
+          year
+        </div>
+        <div
+          className={styles.apply}
+          onClick={() =>
+            updateRoute({
+              minAge: age.min,
+              maxAge: age.max,
+            })
+          }
+        >
+          Apply
         </div>
       </div>
 
@@ -208,20 +246,58 @@ const Search = ({ setOpenFilter }) => {
         <div className={styles.togle}>-</div>
       </div>
       <div className={styles.options}>
+        <label>From </label>{" "}
         <div
           className={styles.flex}
           style={{
             justifyContent: "space-between",
-            gap: "20px",
+            gap: "10px",
+            alignItems: "center",
           }}
         >
-          <label>Minimum </label> <input type="number" />
+          <input
+            type="number"
+            style={{ width: "60px" }}
+            value={height.feetFrom}
+            onChange={(e) => setHeight({ ...height, feetFrom: e.target.value })}
+          />{" "}
+          feet
+          <input
+            type="number"
+            style={{ width: "60px" }}
+            value={height.inchesFrom}
+            onChange={(e) =>
+              setHeight({ ...height, inchesFrom: e.target.value })
+            }
+          />
+          inches
         </div>
+        <label>To</label>{" "}
         <div
           className={styles.flex}
-          style={{ justifyContent: "space-between" }}
+          style={{
+            justifyContent: "space-between",
+            gap: "10px",
+            alignItems: "center",
+          }}
         >
-          <label>Maximum</label> <input type="number" />
+          <input
+            type="number"
+            style={{ width: "60px" }}
+            value={height.feetTo}
+            onChange={(e) => setHeight({ ...height, feetTo: e.target.value })}
+          />
+          feet{" "}
+          <input
+            type="number"
+            style={{ width: "60px" }}
+            value={height.inchesTo}
+            onChange={(e) => setHeight({ ...height, inchesTo: e.target.value })}
+          />
+          inches
+        </div>
+        <div className={styles.apply} onClick={() => updateRoute(height)}>
+          Apply
         </div>
       </div>
 
@@ -307,7 +383,48 @@ const Search = ({ setOpenFilter }) => {
           </div>
         ))}
       </div>
-
+      {/* Allow Chose Educational Type */}
+      <div className={styles.heading}>
+        <div className={styles.title}>Education Type</div>
+        <div className={styles.togle}>-</div>
+      </div>
+      <div
+        className={styles.options}
+        style={{ maxHeight: "30vh", overflow: "scroll" }}
+      >
+        {educationTypes.map((item, index) => (
+          <div className={styles.flex} key={index}>
+            <div className={styles.icon}>
+              {router.query.educationTypes
+                ?.split(",")
+                .find((each) => each == item) ? (
+                <CheckBoxIcon
+                  onClick={() =>
+                    updateRoute({
+                      educationTypes: router.query.educationTypes
+                        ?.split(",")
+                        .filter((i) => i != item)
+                        .join(","),
+                    })
+                  }
+                />
+              ) : (
+                <CheckBoxOutlineBlankIcon
+                  onClick={() =>
+                    updateRoute({
+                      educationTypes: [
+                        ...router.query.educationTypes?.split(","),
+                        item,
+                      ].join(","),
+                    })
+                  }
+                />
+              )}
+            </div>
+            <div className={styles.value}>{item}</div>
+          </div>
+        ))}
+      </div>
       {/* Allow Chose Educational Status */}
       <div className={styles.heading}>
         <div className={styles.title}>Education</div>
@@ -327,9 +444,9 @@ const Search = ({ setOpenFilter }) => {
         ))}
       </div>
 
-      {/* Allow Chose Educational Status */}
+      {/* Allow Chose University Status */}
       <div className={styles.heading}>
-        <div className={styles.title}>Education</div>
+        <div className={styles.title}>College/University</div>
         <div className={styles.togle}>-</div>
       </div>
       <div

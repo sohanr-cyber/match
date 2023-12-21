@@ -51,15 +51,28 @@
     max-width: 210px
 }
 
-.flex input {
-    max-width: 80px;
-    border-radius: 5px;
-    border: 1px solid grey;
-    padding: 3px 7px;
-}
+
 
 .flex input,
 .flex label {
     margin: 5px 0;
+    padding:  7px;
+    border: none;
+    border-radius: 5px;
 
+}
+
+.flex input {
+    border: none;
+    max-width: 80px;
+}
+
+
+.options .apply {
+    text-align: center;
+    background: var(--btn);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }

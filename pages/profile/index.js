@@ -14,7 +14,6 @@ const Profile = ({ data }) => {
       <Navbar />
       <div className={styles.wrapper}>
         <div className={styles.flex}>
-          <div className={styles.total}>Total Results : {data.totalUsers}</div>
           <div
             className={styles.filter}
             onClick={() => {
@@ -23,6 +22,7 @@ const Profile = ({ data }) => {
           >
             Filter
           </div>
+          <div className={styles.total}>Total Results : {data.totalUsers}</div>
         </div>
         <div className={styles.profile__cards}>
           {data.users.map((user, index) => (
@@ -36,21 +36,32 @@ const Profile = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  const { city, district, upazilla, gender, professions, maritalStatuses } =
-    context.query;
+  const {
+    city,
+    district,
+    upazilla,
+    gender,
+    professions,
+    maritalStatuses,
+    feetFrom,
+    inchesFrom,
+    feetTo,
+    inchesTo,
+    educationTypes,
+  } = context.query;
 
-  const url = `${BASE_URL}/api/auth/user-filter?gender=${gender}&maritalStatuses=${maritalStatuses}&city=${city}&district=${district}&upazilla=${upazilla}&professions=${professions}`;
+  const url = `${BASE_URL}/api/auth/user-filter?gender=${gender}&maritalStatuses=${maritalStatuses}&city=${city}&district=${district}&upazilla=${upazilla}&professions=${professions}&feetFrom=${feetFrom}&inchesFrom=${inchesFrom}&feetTo=${feetTo}&inchesTo=${inchesTo}&educationTypes=${educationTypes}`;
 
   try {
     const { data } = await axios.get(url);
     console.log(data);
     return {
       props: {
-        data: data, // Pass fetched data as props
+        data: data,
       },
     };
   } catch (error) {
-    console.error("Error fetching data:", error.message);
+    console.log(error);
     return {
       props: {
         data: null, // Pass null or handle error scenario
