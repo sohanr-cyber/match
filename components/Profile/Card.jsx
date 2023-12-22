@@ -46,7 +46,9 @@ const Card = ({ user, index }) => {
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Height:</div>
-          <div className={styles.value}>5F 3inch</div>
+          <div className={styles.value}>
+            {Math.floor(user.height / 12)}&quot;{user.height % 12}&apos;
+          </div>
         </div>
         <div className={styles.flex}>
           <div className={styles.key}>Color:</div>

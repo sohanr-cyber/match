@@ -5,101 +5,11 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import {
   professions,
   maritalStatuses,
+  institutes,
   educationTypes,
+  educationalStatus,
 } from "@/pages/api/auth/data";
-const EducationalStatus = [
-  "BSC",
-  "Dakhil",
-  "Diploma",
-  "Doctorate",
-  "Fazil",
-  "HSC",
-  "High School",
-  "Kamil",
-  "MSC",
-  "Master",
-  "SSC",
-];
-
-const universityNames = [
-  "Ahsanullah University of Science & Technology",
-  "American International University - Bangladesh",
-  "Asa University Bangladesh",
-  "Asian University of Bangladesh",
-  "Atish Dipankar University",
-  "Bangabandhu Sheikh Mujibur Rahman Agricultural University",
-  "Bangabandhu Sheikh Mujibur Rahman Medical University",
-  "Bangladesh Agricultural University",
-  "Bangladesh Open University",
-  "Bangladesh University",
-  "Bangladesh University of Business & Technology",
-  "Bangladesh University of Engineering and Technology",
-  "Bangladesh University of Professionals",
-  "Bangladesh University of Textiles",
-  "Begum Rokeya University, Rangpur",
-  "BGC Trust University, Bangladesh",
-  "Brac University",
-  "Chittagong Independent University",
-  "Chittagong University of Engineering and Technology",
-  "City University",
-  "Comilla University",
-  "Daffodil International University",
-  "Darul Ihsan University",
-  "Dhaka International University",
-  "Dhaka University of Engineering and Technology",
-  "East Delta University",
-  "Eastern University",
-  "East West University",
-  "East-West University, Mohakhali",
-  "Green University of Bangladesh",
-  "Hajee Mohammad Danesh Science and Technology University",
-  "IBAIS University",
-  "Independent University, Bangladesh",
-  "International Culture University",
-  "International Islamic University Chittagong",
-  "International University of Business Agriculture and Technology",
-  "Islamic University Kushtia",
-  "Islamic University of Technology",
-  "Jagannath University",
-  "Jahangirnagar University",
-  "Jatiya Kabi Kazi Nazrul Islam University",
-  "Khulna University",
-  "Khulna University of Engineering And Technology",
-  "Leading University",
-  "Manarat International University",
-  "Mawlana Bhashani Science And Technology University",
-  "Metropolitan University",
-  "Military Institute of Science and Technology",
-  "National University",
-  "Noakhali University of Science and Technology",
-  "North East University Bangladesh",
-  "Northern University Bangladesh",
-  "North South University",
-  "Pabna University of Science and Technology",
-  "Patuakhali Science and Technology University",
-  "People's University of Bangladesh",
-  "Premier University",
-  "Presidency University",
-  "Queens University",
-  "Rajshahi University of Engineering and Technology",
-  "Shahjalal University of Science and Technology",
-  "Southeast University",
-  "Southern University Bangladesh",
-  "Stamford University",
-  "Sylhet Agricultural University",
-  "Sylhet Engineering College",
-  "Sylhet International University",
-  "United International University",
-  "University of Asia Pacific, Dhanmondi",
-  "University of Chittagong",
-  "University of Development Alternative",
-  "University of Dhaka",
-  "University of Information Technology & Sciences",
-  "University of Liberal Arts",
-  "University of Rajshahi",
-  "University of Science & Technology Chittagong",
-  "World University of Bangladesh",
-];
+import {ageToDateOfBirth} from '@/utils'
 
 import { useRouter } from "next/router";
 const Search = ({ setOpenFilter }) => {
@@ -110,6 +20,8 @@ const Search = ({ setOpenFilter }) => {
     max: router.query.maxAge || 50,
   });
 
+  console.log(router.query.universityNames);
+
   const [height, setHeight] = useState({
     feetFrom: router.query.feetFrom || 4,
     feetTo: router.query.feetTo || 6,
@@ -118,7 +30,7 @@ const Search = ({ setOpenFilter }) => {
   });
 
   const updateRoute = (data) => {
-    console.log(data);
+    console.log({data});
     const queryParams = { ...router.query, ...data };
     router.push({
       pathname: "/profile",
@@ -231,8 +143,9 @@ const Search = ({ setOpenFilter }) => {
           className={styles.apply}
           onClick={() =>
             updateRoute({
-              minAge: age.min,
-              maxAge: age.max,
+              bornAtTo: ageToDateOfBirth(age.min),
+              bornAtFrom: ageToDateOfBirth(age.max),
+
             })
           }
         >
@@ -327,10 +240,12 @@ const Search = ({ setOpenFilter }) => {
                 <CheckBoxOutlineBlankIcon
                   onClick={() =>
                     updateRoute({
-                      maritalStatuses: [
-                        ...router.query.maritalStatuses?.split(","),
-                        item,
-                      ].join(","),
+                      maritalStatuses: router.query.maritalStatuses
+                        ? [
+                            ...router.query.maritalStatuses.split(","),
+                            item,
+                          ].join(",")
+                        : [item].join(","),
                     })
                   }
                 />
@@ -370,10 +285,11 @@ const Search = ({ setOpenFilter }) => {
                 <CheckBoxOutlineBlankIcon
                   onClick={() =>
                     updateRoute({
-                      professions: [
-                        ...router.query.professions?.split(","),
-                        item,
-                      ].join(","),
+                      professions: router.query.professions
+                        ? [...router.query.professions.split(","), item].join(
+                            ","
+                          )
+                        : [item].join(","),
                     })
                   }
                 />
@@ -412,10 +328,12 @@ const Search = ({ setOpenFilter }) => {
                 <CheckBoxOutlineBlankIcon
                   onClick={() =>
                     updateRoute({
-                      educationTypes: [
-                        ...router.query.educationTypes?.split(","),
-                        item,
-                      ].join(","),
+                      educationTypes: router.query.educationTypes
+                        ? [
+                            ...router.query.educationTypes.split(","),
+                            item,
+                          ].join(",")
+                        : [item].join(","),
                     })
                   }
                 />
@@ -434,10 +352,36 @@ const Search = ({ setOpenFilter }) => {
         className={styles.options}
         style={{ maxHeight: "30vh", overflow: "scroll" }}
       >
-        {EducationalStatus.map((item, index) => (
+        {educationalStatus.map((item, index) => (
           <div className={styles.flex} key={index}>
             <div className={styles.icon}>
-              <CheckBoxOutlineBlankIcon />
+              {router.query.educationalStatuses
+                ?.split(",")
+                .find((each) => each == item) ? (
+                <CheckBoxIcon
+                  onClick={() =>
+                    updateRoute({
+                      educationalStatuses: router.query.educationalStatuses
+                        ?.split(",")
+                        .filter((i) => i != item)
+                        .join(","),
+                    })
+                  }
+                />
+              ) : (
+                <CheckBoxOutlineBlankIcon
+                  onClick={() =>
+                    updateRoute({
+                      educationalStatuses: router.query.educationalStatuses
+                        ? [
+                            ...router.query.educationalStatuses.split(","),
+                            item,
+                          ].join(",")
+                        : [item].join(","),
+                    })
+                  }
+                />
+              )}
             </div>
             <div className={styles.value}>{item}</div>
           </div>
@@ -453,10 +397,36 @@ const Search = ({ setOpenFilter }) => {
         className={styles.options}
         style={{ maxHeight: "30vh", overflow: "scroll" }}
       >
-        {universityNames.map((item, index) => (
+        {institutes.map((item, index) => (
           <div className={styles.flex} key={index}>
             <div className={styles.icon}>
-              <CheckBoxOutlineBlankIcon />
+              {router.query.universityNames
+                ?.split(",")
+                .find((each) => each == item) ? (
+                <CheckBoxIcon
+                  onClick={() =>
+                    updateRoute({
+                      universityNames: router.query.universityNames
+                        ?.split(",")
+                        .filter((i) => i != item)
+                        .join(","),
+                    })
+                  }
+                />
+              ) : (
+                <CheckBoxOutlineBlankIcon
+                  onClick={() =>
+                    updateRoute({
+                      universityNames: router.query.universityNames
+                        ? [
+                            ...router.query.universityNames.split(","),
+                            item,
+                          ].join(",")
+                        : [item].join(","),
+                    })
+                  }
+                />
+              )}
             </div>
             <div className={styles.value}>{item}</div>
           </div>

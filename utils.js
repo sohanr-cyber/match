@@ -55,4 +55,4 @@ const colorsWithTransparency = [
   `rgba(173, 216, 230, ${transparency})`, // Light Blue with 10% opacity
 ];
 
-export { calculateAge, colorsWithTransparency };
+export { calculateAge, colorsWithTransparency ,ageToDateOfBirth};

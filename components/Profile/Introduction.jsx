@@ -1,22 +1,32 @@
-import React from "react";
-import styles from "../../styles/Profile/Introuduction.module.css";
-import Image from "next/image";
-import { calculateAge } from "@/utils";
-import { educationTypes } from "@/pages/api/auth/data";
+import React from 'react'
+import styles from '../../styles/Profile/Introuduction.module.css'
+import Image from 'next/image'
+import { calculateAge } from '@/utils'
+import { educationTypes } from '@/pages/api/auth/data'
+import CreateIcon from '@mui/icons-material/Create'
+import { useRouter } from 'next/router'
 const Introduction = ({ data }) => {
+  const router = useRouter()
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
         <div className={styles.left}>
           <Image
-            src="https://images.pexels.com/photos/6208084/pexels-photo-6208084.jpeg?auto=compress&cs=tinysrgb&w=600"
-            height="250"
-            width="200"
-            alt=""
+            src='https://images.pexels.com/photos/6208084/pexels-photo-6208084.jpeg?auto=compress&cs=tinysrgb&w=600'
+            height='250'
+            width='200'
+            alt=''
           />
         </div>
         <div className={styles.right}>
-          <div className={styles.top}>{data._id}</div>
+          <div className={styles.top}>
+            <div className={styles.id}>{data._id}</div>
+            <div className={styles.update}>
+              <CreateIcon
+                onClick={() => router.push(`/profile/update/${data._id}`)}
+              />
+            </div>
+          </div>
           <div className={styles.flex}>
             <div className={styles.key}>Name</div>
             <div className={styles.value}>{data.name}</div>
@@ -27,7 +37,9 @@ const Introduction = ({ data }) => {
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>height</div>
-            <div className={styles.value}>-</div>
+            <div className={styles.value}>
+              {Math.floor(data.height / 12)}&quot;{data.height % 12}&apos;
+            </div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Color</div>
@@ -39,12 +51,11 @@ const Introduction = ({ data }) => {
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Type Of Education:</div>
-            <div className={styles.value}>{data.educationTypes || "--"}</div>
+            <div className={styles.value}>{data.educationTypes || '--'}</div>
           </div>
-
           <div className={styles.flex}>
             <div className={styles.key}>Ocupation</div>
-            <div className={styles.value}>{data.profession || "--"}</div>
+            <div className={styles.value}>{data.profession || '--'}</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Location</div>
@@ -64,7 +75,7 @@ const Introduction = ({ data }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Introduction;
+export default Introduction

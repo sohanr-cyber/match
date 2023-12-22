@@ -14,7 +14,9 @@ const Navbar = () => {
         <Logo />
       </div>
       <div className={styles.items}>
-        <div className={styles.item}>Home</div>
+        <div className={styles.item} onClick={() => router.push("/")}>
+          Home
+        </div>
         <div className={styles.item}>Search</div>
         <div className={styles.item}>Plans</div>
         <div className={styles.item}>Contact Us</div>

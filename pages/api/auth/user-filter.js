@@ -46,6 +46,8 @@ handler.get(async (req, res) => {
       professions,
       maritalStatuses,
       educationTypes,
+      universityNames,
+      educationalStatuses,
     } = req.query;
 
     const filters = {};
@@ -64,23 +66,17 @@ handler.get(async (req, res) => {
     if (skinColor && skinColor !== "All") filters.skinColor = skinColor;
 
     if (bodyType && bodyType !== "All") filters.bodyType = bodyType;
-    // if (bornAtFrom && bornAtTo && bornAtFrom !== "All" && bornAtTo !== "All") {
-    //   filters.bornAt = {
-    //     $gte: new Date(bornAtFrom),
-    //     $lte: new Date(bornAtTo),
-    //   };
-    // }
-
-    console.log({ filters });
+    if (bornAtFrom && bornAtTo && bornAtFrom !== "All" && bornAtTo !== "All") {
+      filters.bornAt = {
+        $gte: new Date(bornAtFrom),
+        $lte: new Date(bornAtTo),
+      };
+    }
 
     if (feetFrom && inchesFrom && feetTo && inchesTo) {
-      filters["height.feet"] = {
-        $gte: parseInt(feetFrom),
-        $lte: parseInt(feetTo),
-      };
-      filters["height.inches"] = {
-        $gte: parseInt(inchesFrom),
-        $lte: parseInt(inchesTo),
+      filters.height = {
+        $gte: parseInt(feetFrom) * 12 + parseInt(inchesFrom),
+        $lte: parseInt(feetTo) * 12 + parseInt(inchesTo),
       };
     }
     if (professions && professions !== "All")
@@ -91,6 +87,13 @@ handler.get(async (req, res) => {
 
     if (educationTypes && educationTypes !== "All")
       filters.educationType = { $in: educationTypes.split(",") };
+
+    if (universityNames && universityNames !== "All")
+      filters.institute = { $in: universityNames.split(",") };
+    console.log({ filters });
+
+    if (educationalStatuses && educationalStatuses !== "All")
+      filters.education = { $in: educationalStatuses.split(",") };
 
     await db.connect();
 

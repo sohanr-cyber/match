@@ -18,6 +18,7 @@ import {
   sessions,
   educationTypes,
   maritalStatuses,
+  educationalStatus,
 } from "./data";
 
 const handler = nextConnect();
@@ -35,6 +36,7 @@ handler.post(async (req, res) => {
         district: faker.random.arrayElement(districts),
         upazilla: faker.random.arrayElement(upazillas),
         educationType: faker.random.arrayElement(educationTypes),
+        education: faker.random.arrayElement(educationalStatus),
         institute: faker.random.arrayElement(institutes),
         bodyType: faker.random.arrayElement(bodyTypes),
         skinColor: faker.random.arrayElement(skinColors),
@@ -47,12 +49,15 @@ handler.post(async (req, res) => {
         approved: true,
         impression: faker.random.number({ min: 0, max: 5000 }),
         averageMonthlyIncome: faker.random.number({ min: 20000, max: 80000 }),
-        height: faker.random.arrayElement(heights),
+        height: faker.random.arrayElement(
+          heights.map((i) => i.feet * 12 + i.inches)
+        ),
       };
 
       console.log({ dummyUser });
       const newUser = await new User(dummyUser);
       await newUser.save();
+      
     }
 
     const users = await User.find({});

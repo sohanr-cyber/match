@@ -6,6 +6,7 @@ import {
   professions,
   maritalStatuses,
   educationTypes,
+  institutes,
 } from "@/pages/api/auth/data";
 const Box = ({ data }) => {
   const [city, setCity] = useState("All");
@@ -39,13 +40,10 @@ const Box = ({ data }) => {
   const search = () => {
     try {
       router.push(
-        `/profile?gender=${gender}&maritalStatus=${maritalStatus}&city=${city}&district=${currentDistrict}&upazilla=${currentUpazilla}&professions=${professions.join(
+        `/profile?gender=${gender}&maritalStatuses=${[maritalStatus].join(
           ","
-        )}&maritalStatuses=${maritalStatuses.join(
-          ","
-        )}&educationTypes=${educationTypes.join(
-          ","
-        )}&feetFrom=${4}&inchesFrom=${5}&feetTo=${6}&inchesTo=${5}`
+        )}&city=${city}&district=${currentDistrict}&upazilla=${currentUpazilla}&feetFrom=${4}&inchesFrom=${5}&feetTo=${6}&inchesTo=${5}
+        )}`
       );
     } catch (error) {
       console.log(error);

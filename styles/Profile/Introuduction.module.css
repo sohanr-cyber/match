@@ -28,6 +28,9 @@
     border-bottom: 2px solid blue;
     padding-bottom: 7px;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .right .key {

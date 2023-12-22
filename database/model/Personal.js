@@ -1,24 +1,33 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const PersonalSchema = mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+      unique: true
+    },
     firstName: { type: String },
     lastName: { type: String },
     password: { type: String },
     gender: {
-      type: String,
+      type: String
     },
     maritalStatus: {
-      type: String,
+      type: String
     },
 
     bornAt: {
-      type: String,
+      type: String
     },
+    languageSpeak: [{ type: String }],
+    languageRead: [{ type: String }],
+    children: { type: number }
   },
   { timestamps: true }
-);
+)
 
 const Personal =
-  mongoose.models.Personal || mongoose.model("Personal", PersonalSchema);
-export default Personal;
+  mongoose.models.Personal || mongoose.model('Personal', PersonalSchema)
+export default Personal

@@ -48,13 +48,25 @@ export async function getServerSideProps(context) {
     feetTo,
     inchesTo,
     educationTypes,
+    universityNames,
+    educationalStatuses,
+    bornAtTo,bornAtFrom
   } = context.query;
 
-  const url = `${BASE_URL}/api/auth/user-filter?gender=${gender}&maritalStatuses=${maritalStatuses}&city=${city}&district=${district}&upazilla=${upazilla}&professions=${professions}&feetFrom=${feetFrom}&inchesFrom=${inchesFrom}&feetTo=${feetTo}&inchesTo=${inchesTo}&educationTypes=${educationTypes}`;
+  const url = `${BASE_URL}/api/auth/user-filter?gender=${
+    gender || "All"
+  }&maritalStatuses=${maritalStatuses || "All"}&city=${
+    city || "All"
+  }&district=${district || "All"}&upazilla=${upazilla || "All"}&professions=${
+    professions || "All"
+  }&feetFrom=${feetFrom}&inchesFrom=${inchesFrom}&feetTo=${feetTo}&inchesTo=${inchesTo}&educationTypes=${
+    educationTypes || "All"
+  }&universityNames=${universityNames || "All"}&educationalStatuses=${
+    educationalStatuses || "All"
+  }&bornAtFrom=${bornAtFrom || "All"}&bornAtTo=${bornAtTo || "All"}`;
 
   try {
     const { data } = await axios.get(url);
-    console.log(data);
     return {
       props: {
         data: data,

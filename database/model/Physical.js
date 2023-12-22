@@ -1,28 +1,30 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
-const PersonalSchema = mongoose.Schema(
+const physicalSchema = mongoose.Schema(
   {
-    HeightFeet: { type: String },
-    lastName: { type: String },
-    password: { type: String },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+      unique: true
+    },
+    mass: { type: number },
     gender: {
-      type: String,
+      type: String
     },
     height: {
-      feet: { type: Number },
-      inch: { type: Number },
+      type: number
     },
-    maritalStatus: {
-      type: String,
+    issue: {
+      type: String
     },
-
-    bornAt: {
-      type: String,
-    },
+    blood: { type: String },
+    bodyType: { type: String },
+    bodyColor: { type: String }
   },
   { timestamps: true }
-);
+)
 
-const Personal =
-  mongoose.models.Personal || mongoose.model("Personal", PersonalSchema);
-export default Personal;
+const Physical =
+  mongoose.models.Physical || mongoose.model('Physical', physicalSchema)
+export default Physical
