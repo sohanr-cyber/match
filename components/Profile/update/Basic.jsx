@@ -14,6 +14,7 @@ const Basic = () => {
   return (
     <>
       <div className={styles.wrapper} style={{ paddingTop: '70px' }}>
+        <h2 style={{ marginBottom: '10px' }}>Update Your Profile</h2>
         <div className={styles.heading}>
           <span className={styles.number}>1</span>
           <div className={styles.title}>Basic Information</div>
@@ -88,8 +89,10 @@ const Basic = () => {
           <div className={styles.field}>
             <label>Education</label>
             <select name='profession'>
-              {educationalStatus.map(item => (
-                <option value={item}>{item}</option>
+              {educationalStatus.map((item, index) => (
+                <option value={item} key={index}>
+                  {item}
+                </option>
               ))}
             </select>
           </div>
@@ -114,6 +117,7 @@ const Basic = () => {
             </select>
           </div>
         </form>
+        <div className={styles.save}>Save</div>
       </div>
     </>
   )

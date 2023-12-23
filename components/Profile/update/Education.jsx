@@ -57,44 +57,55 @@ const Education = () => {
         <div className={styles.field}>
           <label>Skin Color</label>
           <select name='profession'>
-            {skinColors.map(item => (
-              <option value={item}>{item}</option>
+            {skinColors.map((item, index) => (
+              <option value={item} key={index}>
+                {item}
+              </option>
             ))}
           </select>
         </div>
         <div className={styles.field}>
           <label>Education Type</label>
           <select name='profession'>
-            {educationTypes.map(item => (
-              <option value={item}>{item}</option>
+            {educationTypes.map((item, index) => (
+              <option value={item} key={index}>
+                {item}
+              </option>
             ))}
           </select>
         </div>
         <div className={styles.field}>
           <label>Education</label>
           <select name='profession'>
-            {educationalStatus.map(item => (
-              <option value={item}>{item}</option>
+            {educationalStatus.map((item, index) => (
+              <option value={item} key={index}>
+                {item}
+              </option>
             ))}
           </select>
         </div>
         <div className={styles.field}>
           <label>University</label>
           <select name='profession'>
-            {institutes.map(item => (
-              <option value={item}>{item}</option>
+            {institutes.map((item, index) => (
+              <option value={item} key={index}>
+                {item}
+              </option>
             ))}
           </select>
         </div>
         <div className={styles.field}>
           <label>Session</label>
           <select name='profession'>
-            {sessions.map(item => (
-              <option value={item}>{item}</option>
+            {sessions.map((item, index) => (
+              <option value={item} key={index}>
+                {item}
+              </option>
             ))}
           </select>
         </div>
       </form>
+      <div className={styles.save}>Save</div>
     </div>
   )
 }

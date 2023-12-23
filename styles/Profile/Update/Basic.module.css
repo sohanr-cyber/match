@@ -1,6 +1,7 @@
 .wrapper {
     padding: 25px;
     background-color: rgba(0, 191, 255, 0.1);
+    position: relative;
 }
 
 .wrapper .heading {
@@ -91,6 +92,17 @@
 
 .flex {
     display: flex;
+}
+
+.save {
+    display: inline-block;
+    background-color: green;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    min-width: 100px;
+    margin-right: 0;
+    margin: auto
 }
 
 

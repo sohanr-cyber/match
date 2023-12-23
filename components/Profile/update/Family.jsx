@@ -13,10 +13,7 @@ import {
 
 const Religion = () => {
   return (
-    <div
-      className={styles.wrapper}
-      style={{ backgroundColor: 'skyblue', paddingTop: '25px' }}
-    >
+    <div className={styles.wrapper}>
       <div className={styles.heading}>
         <span className={styles.number}>6</span>
         <div className={styles.title}>Family Information</div>
@@ -59,7 +56,8 @@ const Religion = () => {
           <label>Do They Agree To you Marriage ? </label>
           <textarea></textarea>
         </div>
-      </form>
+      </form>{' '}
+      <div className={styles.save}>Save</div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
-import nextConnect from "next-connect";
-import User from "@/database/model/User";
-import faker from "faker";
-import db from "@/database/connection";
+import nextConnect from 'next-connect'
+import User from '@/database/model/User'
+import faker from 'faker'
+import db from '@/database/connection'
 import {
   institutes,
   districts,
@@ -18,14 +18,14 @@ import {
   sessions,
   educationTypes,
   maritalStatuses,
-  educationalStatus,
-} from "./data";
+  educationalStatus
+} from './data'
 
-const handler = nextConnect();
+const handler = nextConnect()
 
 handler.post(async (req, res) => {
   try {
-    await db.connect();
+    await db.connect()
 
     for (let i = 0; i < 500; i++) {
       const dummyUser = {
@@ -40,7 +40,7 @@ handler.post(async (req, res) => {
         institute: faker.random.arrayElement(institutes),
         bodyType: faker.random.arrayElement(bodyTypes),
         skinColor: faker.random.arrayElement(skinColors),
-        gender: faker.random.arrayElement(["Male", "Female"]),
+        gender: faker.random.arrayElement(['Male', 'Female']),
         status: faker.random.arrayElement(marriageStatus),
         profession: faker.random.arrayElement(professions),
         bornAt: new Date(faker.random.arrayElement(datesOfBirth)),
@@ -50,30 +50,31 @@ handler.post(async (req, res) => {
         impression: faker.random.number({ min: 0, max: 5000 }),
         averageMonthlyIncome: faker.random.number({ min: 20000, max: 80000 }),
         height: faker.random.arrayElement(
-          heights.map((i) => i.feet * 12 + i.inches)
-        ),
-      };
+          heights.map(i => i.feet * 12 + i.inches)
+        )
+      }
 
-      console.log({ dummyUser });
-      const newUser = await new User(dummyUser);
-      await newUser.save();
-      
+      console.log({ dummyUser })
+      const newUser = await new User(dummyUser)
+
+      await newUser.save()
     }
 
-    const users = await User.find({});
-    res.status(200).send({ users });
+    const users = await User.find({})
+    res.status(200).send({ users })
   } catch (error) {
-    console.log(error);
-    res.status(400);
+    console.log(error)
+    res.status(400)
   }
-});
+})
 
 handler.get(async (req, res) => {
   try {
-    const users = await User.find({}).lean();
-    res.status(200).json(users);
+    await db.connect()
+    const users = await User.find({}).lean()
+    res.status(200).json(users)
   } catch (error) {
-    res.status(400);
+    res.status(400)
   }
-});
-export default handler;
+})
+export default handler

@@ -75,6 +75,7 @@ const Basic = () => {
           </select>
         </div>
       </form>
+      <div className={styles.save}>Save</div>
     </div>
   )
 }

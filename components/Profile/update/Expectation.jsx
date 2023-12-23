@@ -13,7 +13,7 @@ import {
 const Basic = () => {
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} style={{ backgroundColor: 'aliceblue' }}>
         <div className={styles.heading}>
           <span className={styles.number}>7</span>
           <div className={styles.title}>Your Expectation</div>
@@ -29,33 +29,29 @@ const Basic = () => {
           </div>
           <div className={styles.field}>
             <label>Minimum Height</label>
-            <input
-              type='number'
-              placeholder='5'
-              style={{ maxWidth: '45px', minWidth: '30px' }}
-            />
-            <span style={{ marginLeft: '-5px' }}> feet</span>
-            <input
-              type='number'
-              placeholder='8'
-              style={{ maxWidth: '45px', minWidth: '30px' }}
-            />
-            <span style={{ marginLeft: '-5px' }}>inches</span>
+            <div className={styles.flex}>
+              <input type='number' placeholder='5' />
+              <span> feet</span>
+              <input type='number' placeholder='8' />
+              <span>inches</span>
+            </div>
           </div>
           <div className={styles.field}>
             <label>Maximum Height</label>
-            <input
-              type='number'
-              placeholder='5'
-              style={{ maxWidth: '45px', minWidth: '30px' }}
-            />
-            <span style={{ marginLeft: '-5px' }}> feet</span>
-            <input
-              type='number'
-              placeholder='8'
-              style={{ maxWidth: '45px', minWidth: '30px' }}
-            />
-            <span style={{ marginLeft: '-5px' }}>inches</span>
+            <div className={styles.flex}>
+              <input
+                type='number'
+                placeholder='5'
+                // style={{ maxWidth: '45px', minWidth: '30px' }}
+              />
+              <span> feet</span>
+              <input
+                type='number'
+                placeholder='8'
+                // style={{ maxWidth: '45px', minWidth: '30px' }}
+              />
+              <span>inches</span>
+            </div>
           </div>
           <div className={styles.field}>
             <label>Body Type</label>
@@ -101,7 +97,8 @@ const Basic = () => {
             <label>Piety</label>
             <textarea></textarea>
           </div>
-        </form>
+        </form>{' '}
+        <div className={styles.save}>Save</div>
       </div>
     </>
   )

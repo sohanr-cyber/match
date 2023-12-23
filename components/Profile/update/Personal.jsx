@@ -19,7 +19,7 @@ const Basic = () => {
     >
       <div className={styles.heading}>
         <span className={styles.number}>2</span>
-        <div className={styles.title}>Personal Information Information</div>
+        <div className={styles.title}>Personal Information</div>
       </div>
       <form className={styles.formContainer}>
         <div className={styles.field}>
@@ -38,8 +38,10 @@ const Basic = () => {
         <div className={styles.field}>
           <label>Gender</label>
           <select name='profession'>
-            {['Male', 'Female'].map(item => (
-              <option value={item}>{item}</option>
+            {['Male', 'Female'].map((item, index) => (
+              <option value={item} key={index}>
+                {item}
+              </option>
             ))}
           </select>
         </div>
@@ -54,6 +56,8 @@ const Basic = () => {
           </select>
         </div>
       </form>
+      <div className={styles.save}>Save</div>
+
     </div>
   )
 }

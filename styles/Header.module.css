@@ -22,6 +22,8 @@
 
 }
 
+
+
 .wrapper h1,
 .wrapper p {
     z-index: 2;
@@ -29,7 +31,7 @@
 }
 
 .box {
-    background-color: rgb(228, 238, 246, 0.5);
+    background-color: rgb(248, 248, 248);
     padding: 15px;
     border-radius: 5px;
     z-index: 2;
@@ -64,13 +66,12 @@
     border-radius: 5px;
     padding: 5px 7px;
     background-color: rgb(0, 0, 255, 0.1);
-
 }
 
 
 .box .search {
     text-align: center;
-    background: var(--btn);
+    /* background: var(--btn); */
     margin: 15px 0;
     padding: 5px 7px;
     color: white;
@@ -78,6 +79,61 @@
     cursor: pointer;
     font-weight: bold;
     text-transform: capitalize;
+    background: green;
+    border-radius: 5px 0 0 5px;
+
+}
+
+
+.box .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.box .flex .searchbyId {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 5px 5px 0px;
+    border: 1px solid rgb(97, 96, 96);
+}
+
+
+.box .flex .search,
+.box .flex .searchbyId {
+    flex: 1;
+}
+
+.box .flex .searchbyId input {
+    padding: 7px;
+    width: 100%;
+    border: none;
+    height: 100%;
+    background: rgb(0, 183, 255);
+    color: white;
+
+}
+
+
+.box .flex .searchbyId input::placeholder {
+    color: white;
+    font-weight: bold;
+    /* color: black; */
+
+}
+
+.box .flex .searchbyId .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    color: white;
+    min-width: 40px;
 }
 
 @media (max-width: 570px) {
@@ -107,4 +163,21 @@
     .box form .field {
         min-width: 110px;
     }
+
+    .box .flex {
+        display: flex;
+        flex-direction: column;
+        width: 100%
+    }
+
+    .box form .field {
+        width: 100%;
+    }
+
+    .box .flex .search,
+    .box .flex .searchbyId {
+        width: 100%;
+        border-radius: 5px;
+    }
+
 }

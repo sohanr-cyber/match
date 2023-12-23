@@ -13,10 +13,7 @@ import {
 
 const Basic = () => {
   return (
-    <div
-      className={styles.wrapper}
-      style={{ backgroundColor: 'aliceblue', paddingTop: '25px' }}
-    >
+    <div className={styles.wrapper} style={{ backgroundColor: 'aliceblue' }}>
       <div className={styles.heading}>
         <span className={styles.number}>5</span>
         <div className={styles.title}>Address</div>
