@@ -1,14 +1,14 @@
 import React from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import Basic from '@/components/Profile/Update/Basic'
-import Personal from '@/components/Profile/Update/Personal'
-import Religion from '@/components/Profile/Update/Religion'
-import Family from '@/components/Profile/Update/Family'
-import Expectation from '@/components/Profile/Update/Expectation'
-import Physical from '@/components/Profile/Update/Physical'
+import Personal from '@/components/Profile/Personal'
 import Education from '@/components/Profile/Update/Education'
-import Address from '@/components/Profile/Update/Address'
+import Physical from '@/components/Profile/Physical'
+import Religion from '@/components/Profile/Update/Religion'
+import Address from '@/components/Profile/Address'
+import Basic from '@/components/Profile/Update/Basic'
+import Family from '@/components/Profile/Family'
+import Expectation from '@/components/Profile/Expectation'
 
 const Update = () => {
   return (
