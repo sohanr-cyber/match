@@ -1,19 +1,19 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
-const familySchema = mongoose.Schema(
+const educationSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
-      unique: true,
+      unique: true
     },
     institutes: [
       {
         name: { type: String },
         start: { type: String },
-        end: { type: String },
-      },
+        end: { type: String }
+      }
     ],
     educationType: { type: String },
     sscDate: { type: String },
@@ -25,11 +25,11 @@ const familySchema = mongoose.Schema(
     mastersDate: { type: String },
     mastersResult: { type: String },
     current: { type: String },
-    other: { type: String },
+    other: { type: String }
   },
   { timestamps: true }
-);
+)
 
-const Personal =
-  mongoose.models.Family || mongoose.model("Family", familySchema);
-export default Family;
+const Education =
+  mongoose.models.Education || mongoose.model('Education', educationSchema)
+export default Education

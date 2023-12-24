@@ -1,5 +1,6 @@
 import nextConnect from 'next-connect'
 import User from '@/database/model/User'
+import Address from '@/database/model/Address'
 import faker from 'faker'
 import db from '@/database/connection'
 import {
@@ -20,6 +21,12 @@ import {
   maritalStatuses,
   educationalStatus
 } from './data'
+import Education from '@/database/model/Education'
+import Personal from '@/database/model/Personal'
+import Physical from '@/database/model/Physical'
+import Religion from '@/database/model/Religion'
+import Expectation from '@/database/model/Expectation'
+import Family from '@/database/model/Family'
 
 const handler = nextConnect()
 
@@ -27,7 +34,7 @@ handler.post(async (req, res) => {
   try {
     await db.connect()
 
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 5; i++) {
       const dummyUser = {
         name: faker.random.arrayElement(names),
         email: faker.internet.email(),
@@ -56,8 +63,14 @@ handler.post(async (req, res) => {
 
       console.log({ dummyUser })
       const newUser = await new User(dummyUser)
-
       await newUser.save()
+      await Address.create({ user: newUser._id })
+      await Education.create({ user: newUser._id })
+      await Family.create({ user: newUser._id })
+      await Personal.create({ user: newUser._id })
+      await Physical.create({ user: newUser._id })
+      await Religion.create({ user: newUser._id })
+      await Expectation.create({ user: newUser._id })
     }
 
     const users = await User.find({})

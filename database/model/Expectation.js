@@ -8,7 +8,7 @@ const expectationSchema = mongoose.Schema(
       required: true,
       unique: true
     },
-    profession: [
+    professions: [
       {
         type: String
       }
@@ -17,14 +17,14 @@ const expectationSchema = mongoose.Schema(
       type: Number
     },
     maxHeight: { type: Number },
-    education: [{ type: String }],
-    meritalStatus: [{ type: String }],
-    skinColor: [
+    educations: [{ type: String }],
+    meritalStatuses: [{ type: String }],
+    skinColors: [
       {
         type: String
       }
     ],
-    bodyType: [{ type: String }],
+    bodyTypes: [{ type: String }],
 
     bornAtFrom: {
       type: Date
@@ -32,8 +32,8 @@ const expectationSchema = mongoose.Schema(
     bornAtTo: {
       type: Date
     },
-    district: [{ type: String }],
-    char: { type: String }
+    districts: [{ type: String }],
+    description: { type: String }
   },
   { timestamps: true }
 )

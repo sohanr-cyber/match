@@ -51,7 +51,7 @@ const Religion = () => {
           <label>write something about your interest , hoby , dream? </label>
           <textarea></textarea>
         </div>
-      </form>{' '}
+      </form>
       <div className={styles.save}>Save</div>
     </div>
   )
